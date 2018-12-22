@@ -8,7 +8,10 @@ Making-of
 
 ### Data preparation
 
-...
+    ogr2ogr -f GPKG monopoly.gpkg Schienennetz_LV95_20171210.gdb KmLinie
+    ogr2ogr -f GPKG monopoly.gpkg -append -nln etappen Schienennetz_LV95_20171210.gdb KmLinie
+    ogr2ogr -f GPKG monopoly.gpkg -append didok-liste.shp
+    ogr2ogr -f GPKG monopoly.gpkg -append -nln places didok-liste.shp
 
 ### Application
 
