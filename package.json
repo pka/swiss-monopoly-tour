@@ -11,7 +11,8 @@
     "parcel-bundler": "^1.11.0"
   },
   "scripts": {
-    "start": "parcel storymap/index.html"
+    "start": "parcel storymap/index.html",
+    "build": "parcel build storymap/index.html"
   },
   "author": "Pirmin Kalberer",
   "license": "ISC"
