@@ -1,2 +1,33 @@
 body { margin:0; padding:0; }
-#map { position:absolute; top:0; bottom:0; width:100%; }
+
+#map {
+    position: fixed;
+    top:0;
+    bottom:0;
+    width:65%;
+}
+#story {
+    width: 35%;
+    margin-left: 65%;
+    font-family: Arial;
+    overflow-y: scroll;
+    background-color: #e3ddd6;
+}
+section {
+    padding:  25px 50px;
+    line-height: 25px;
+    border-bottom: 1px solid #23a8d3;
+    opacity: 0.25;
+    font-size: 20px;
+}
+section.active {
+    opacity: 0.75;
+}
+section:last-child {
+    border-bottom: none;
+    margin-bottom: 1000px;
+}
+section img {
+   width: 80%;
+   height: 80%;
+}

@@ -45,3 +45,31 @@ map.on('load', function () {
         }
     });
 });
+
+// On every scroll event, check which element is on screen
+window.onscroll = function() {
+    for (var i = 0; i < places.features.length; i++) {
+        if (isElementOnScreen(i)) {
+            setActivePlace(i);
+            break;
+        }
+    }
+};
+var activePlaceNo = 0;
+function setActivePlace(placeNo) {
+    if (placeNo === activePlaceNo) return;
+    var place = places.features[placeNo];
+    map.flyTo({
+        center: place.geometry.coordinates,
+        zoom: 9,
+        speed: 0.5
+    });
+    document.getElementById(placeNo.toString()).setAttribute('class', 'active');
+    document.getElementById(activePlaceNo.toString()).setAttribute('class', '');
+    activePlaceNo = placeNo;
+}
+function isElementOnScreen(id) {
+    var element = document.getElementById(id.toString());
+    var bounds = element.getBoundingClientRect();
+    return bounds.top < window.innerHeight && bounds.bottom > 0;
+}
