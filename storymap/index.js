@@ -2,7 +2,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import './index.css';
 import places from './places.json';
-import etappen from './etappen.json';
+import tour from './tour.json';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic291cmNlcG9sZSIsImEiOiJjanB6bWxoazEwY2plNDhsY3RpenBvNmM0In0.Z--2Th6QmaLc_OhPDNsiwg';
 const map = new mapboxgl.Map({
@@ -37,11 +37,11 @@ map.on('load', function () {
         }
     });
     map.addLayer({
-        'id': 'etappen',
+        'id': 'tour',
         'type': 'line',
         'source': {
             'type': 'geojson',
-            'data': etappen
+            'data': tour
         }
     });
 });

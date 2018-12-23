@@ -1,7 +1,7 @@
-Swiss Monopoly Storymap
-=======================
+Swiss Monopoly Tour
+===================
 
-Source code of the Swiss Monopoly Journey Storymap.
+Source code of the Swiss Monopoly Tour storymap.
 
 Making-of
 ---------
@@ -9,7 +9,7 @@ Making-of
 ### Data preparation
 
     ogr2ogr -f GPKG monopoly.gpkg Schienennetz_LV95_20171210.gdb KmLinie
-    ogr2ogr -f GPKG monopoly.gpkg -append -nln etappen Schienennetz_LV95_20171210.gdb KmLinie
+    ogr2ogr -f GPKG monopoly.gpkg -append -nln tour Schienennetz_LV95_20171210.gdb KmLinie
     ogr2ogr -f GPKG monopoly.gpkg -append didok-liste.shp
     ogr2ogr -f GPKG monopoly.gpkg -append -nln places didok-liste.shp
 
