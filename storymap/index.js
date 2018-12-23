@@ -47,31 +47,86 @@ map.on('load', function () {
             'data': tour
         }
     });
+    map.addSource('track', { type: 'geojson', data: track });
+    map.addLayer({
+        "id": "track",
+        "type": "line",
+        "source": "track",
+        "paint": {
+            "line-color": "yellow",
+            "line-opacity": 0.75,
+            "line-width": 5
+        }
+    });
+
+    enterView({
+        selector: 'article .step',
+        enter: function(el) {
+            el.classList.add('active');
+            const placeidx = +el.dataset.index;
+            if (placeidx === 0) {
+                setActivePlace(placeidx);
+            } else {
+                animateTrack(tour.features[placeidx-1].geometry);
+            }
+        },
+        exit: function(el) {
+            cancelAnimationFrame(animation);
+            el.classList.remove('active');
+        },
+        offset: 0.5,
+    });
 });
 
-var activePlaceNo = 0;
-function setActivePlace(placeNo) {
-    if (placeNo === activePlaceNo) return;
-    var place = places.features[placeNo];
+// Empty GeoJSON for animated track
+var track = {
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "geometry": {
+            "type": "LineString",
+            "coordinates": []
+        }
+    }]
+};
+var trackcoords = [];
+var coordidx = 0;
+var animation;
+
+function animateLine() {
+    if (coordidx < trackcoords.length) {
+        track.features[0].geometry.coordinates.push(trackcoords[coordidx]);
+        // update map
+        map.getSource('track').setData(track);
+        map.panTo(trackcoords[coordidx]);
+        coordidx++;
+
+        // Request the next frame of the animation.
+        animation = requestAnimationFrame(animateLine);
+    }
+}
+
+function animateTrack(multiline) {
+    const lines = multiline.coordinates;
+    // Append coordinates of all lines
+    trackcoords = [];
+    for (var i = 0; i < lines.length; i++) {
+        trackcoords.push(...lines[i]);
+    }
+    coordidx = 0;
+    track.features[0].geometry.coordinates = [];
+    map.jumpTo({ 'center': trackcoords[0], 'zoom': 9 });
+    animateLine();
+}
+
+function setActivePlace(placeidx) {
+    var place = places.features[placeidx];
     map.flyTo({
         center: place.geometry.coordinates,
         zoom: 9,
         speed: 0.5
     });
-    activePlaceNo = placeNo;
 }
-
-enterView({
-    selector: 'article .step',
-    enter: function(el) {
-        setActivePlace(el.dataset.index);
-        el.classList.add('active');
-    },
-    exit: function(el) {
-        el.classList.remove('active');
-    },
-    offset: 0.5,
-});
 
 mediumZoom('.step img', {
   margin: 24,
