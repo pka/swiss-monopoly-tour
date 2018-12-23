@@ -1,33 +1,42 @@
 body { margin:0; padding:0; }
 
-#map {
-    position: fixed;
-    top:0;
-    bottom:0;
-    width:65%;
+#scrolly-overlay .scrolly .sticky {
+    overflow: hidden;
+    position: -webkit-sticky;
+    position: sticky;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    top: 0;
+    left: 0;
+    background-color: #efe9e1;
 }
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 65%;
+    height: 100vh;
+}
+
 #story {
     width: 35%;
     margin-left: 65%;
     font-family: Arial;
     overflow-y: scroll;
-    background-color: #e3ddd6;
 }
-section {
+#story .step {
     padding:  25px 50px;
     line-height: 25px;
     border-bottom: 1px solid #23a8d3;
     opacity: 0.25;
     font-size: 20px;
 }
-section.active {
+#story .active {
     opacity: 0.75;
 }
-section:last-child {
-    border-bottom: none;
-    margin-bottom: 1000px;
-}
-section img {
+#story .step img {
    width: 80%;
    height: 80%;
 }

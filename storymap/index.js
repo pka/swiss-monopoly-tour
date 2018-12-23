@@ -11,7 +11,8 @@ const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v9',
     center: [8.228760,46.873336],
-    zoom: 7
+    zoom: 7,
+    touchZoomRotate: false
 });
 
 map.on('load', function () {
@@ -61,9 +62,9 @@ function setActivePlace(placeNo) {
 }
 
 enterView({
-    selector: 'section',
+    selector: 'article .step',
     enter: function(el) {
-        setActivePlace(el.id);
+        setActivePlace(el.dataset.index);
         el.classList.add('active');
     },
     exit: function(el) {
@@ -72,7 +73,7 @@ enterView({
     offset: 0.5,
 });
 
-mediumZoom('section img', {
+mediumZoom('.step img', {
   margin: 24,
   background: 'rgba(25, 18, 25, .7)'
 });
