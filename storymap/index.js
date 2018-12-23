@@ -4,7 +4,7 @@ import enterView from 'enter-view';
 import mediumZoom from 'medium-zoom';
 import './index.css';
 import places from './places.json';
-import tour from './tour.json';
+import tracks from './tracks.json';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic291cmNlcG9sZSIsImEiOiJjanB6bWxoazEwY2plNDhsY3RpenBvNmM0In0.Z--2Th6QmaLc_OhPDNsiwg';
 const map = new mapboxgl.Map({
@@ -40,11 +40,11 @@ map.on('load', function () {
         }
     });
     map.addLayer({
-        'id': 'tour',
+        'id': 'tracks',
         'type': 'line',
         'source': {
             'type': 'geojson',
-            'data': tour
+            'data': tracks
         }
     });
     map.addSource('track', { type: 'geojson', data: track });
@@ -67,7 +67,7 @@ map.on('load', function () {
             if (placeidx === 0) {
                 setActivePlace(placeidx);
             } else {
-                animateTrack(tour.features[placeidx-1].geometry);
+                animateTrack(tracks.features[placeidx-1].geometry);
             }
         },
         exit: function(el) {
