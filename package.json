@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Monopoly Storymap",
   "dependencies": {
+    "enter-view": "^1.0.0",
     "mapbox-gl": "^0.52.0",
     "medium-zoom": "^1.0.2"
   },

@@ -1,6 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import mediumZoom from 'medium-zoom'
+import enterView from 'enter-view';
+import mediumZoom from 'medium-zoom';
 import './index.css';
 import places from './places.json';
 import tour from './tour.json';
@@ -47,15 +48,6 @@ map.on('load', function () {
     });
 });
 
-// On every scroll event, check which element is on screen
-window.onscroll = function() {
-    for (var i = 0; i < places.features.length; i++) {
-        if (isElementOnScreen(i)) {
-            setActivePlace(i);
-            break;
-        }
-    }
-};
 var activePlaceNo = 0;
 function setActivePlace(placeNo) {
     if (placeNo === activePlaceNo) return;
@@ -65,15 +57,20 @@ function setActivePlace(placeNo) {
         zoom: 9,
         speed: 0.5
     });
-    document.getElementById(placeNo.toString()).setAttribute('class', 'active');
-    document.getElementById(activePlaceNo.toString()).setAttribute('class', '');
     activePlaceNo = placeNo;
 }
-function isElementOnScreen(id) {
-    var element = document.getElementById(id.toString());
-    var bounds = element.getBoundingClientRect();
-    return bounds.top < window.innerHeight && bounds.bottom > 0;
-}
+
+enterView({
+    selector: 'section',
+    enter: function(el) {
+        setActivePlace(el.id);
+        el.classList.add('active');
+    },
+    exit: function(el) {
+        el.classList.remove('active');
+    },
+    offset: 0.5,
+});
 
 mediumZoom('section img', {
   margin: 24,
