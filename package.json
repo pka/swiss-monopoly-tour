@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Monopoly Storymap",
   "dependencies": {
-    "mapbox-gl": "^0.52.0"
+    "mapbox-gl": "^0.52.0",
+    "medium-zoom": "^1.0.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

@@ -1,5 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import mediumZoom from 'medium-zoom'
 import './index.css';
 import places from './places.json';
 import tour from './tour.json';
@@ -73,3 +74,8 @@ function isElementOnScreen(id) {
     var bounds = element.getBoundingClientRect();
     return bounds.top < window.innerHeight && bounds.bottom > 0;
 }
+
+mediumZoom('section img', {
+  margin: 24,
+  background: 'rgba(25, 18, 25, .7)'
+});
