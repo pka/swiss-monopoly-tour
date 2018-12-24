@@ -11,9 +11,11 @@ const map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v9',
     center: [8.228760,46.873336],
-    zoom: 7,
-    touchZoomRotate: false
+    zoom: 7
 });
+map.fitBounds([[5.9436,45.8058], [10.5139,47.8242]]);
+map.dragRotate.disable();
+map.touchZoomRotate.disableRotation();
 
 map.on('load', function () {
     map.addSource('places', {
