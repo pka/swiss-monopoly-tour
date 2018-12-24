@@ -25,7 +25,7 @@ map.on('load', function () {
         'type': 'circle',
         'source': 'places',
         'paint': {
-            'circle-color': 'blue'
+            'circle-color': 'black'
         }
     });
     map.addLayer({
@@ -45,6 +45,10 @@ map.on('load', function () {
         'source': {
             'type': 'geojson',
             'data': tracks
+        },
+        "paint": {
+            "line-color": "green",
+            "line-width": 4
         }
     });
     map.addSource('track', { type: 'geojson', data: track });
@@ -53,17 +57,19 @@ map.on('load', function () {
         "type": "line",
         "source": "track",
         "paint": {
-            "line-color": "yellow",
-            "line-opacity": 0.75,
+            "line-color": "green",
             "line-width": 5
         }
     });
+
+    updateTrackFilter(0);
 
     enterView({
         selector: 'article .step',
         enter: function(el) {
             el.classList.add('active');
             const placeidx = +el.dataset.index;
+            updateTrackFilter(placeidx);
             if (placeidx === 0) {
                 setActivePlace(placeidx);
             } else {
@@ -77,6 +83,23 @@ map.on('load', function () {
         offset: 0.5,
     });
 });
+
+function updateTrackFilter(placeidx) {
+    // place filter
+    var filter = ['in', 'fid'];
+    for (var i=0; i<=placeidx; i++) {
+        filter.push(places.features[i].properties['fid']);
+    }
+    map.setFilter('place-markers', filter);
+    map.setFilter('place-label', filter);
+
+    // track filter
+    var filter = ['in', 'OBJECTID'];
+    for (var i=0; i<placeidx-1; i++) {
+        filter.push(tracks.features[i].properties['OBJECTID']);
+    }
+    map.setFilter('tracks', filter);
+}
 
 // Empty GeoJSON for animated track
 var track = {
