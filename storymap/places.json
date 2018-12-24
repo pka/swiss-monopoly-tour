@@ -11,7 +11,7 @@
 { "type": "Feature", "properties": { "fid": 26488, "name": "Basel" }, "geometry": { "type": "Point", "coordinates": [ 7.6088, 47.5424 ] } },
 { "type": "Feature", "properties": { "fid": 26489, "name": "Lugano" }, "geometry": { "type": "Point", "coordinates": [ 8.9469, 46.0055 ] } },
 { "type": "Feature", "properties": { "fid": 26490, "name": "Luzern" }, "geometry": { "type": "Point", "coordinates": [ 8.3102, 47.0502 ] } },
-{ "type": "Feature", "properties": { "fid": 26491, "name": "Zofingen" }, "geometry": { "type": "Point", "coordinates": [ 7.9431, 47.288 ] } },
+{ "type": "Feature", "properties": { "fid": 26491, "name": "" }, "geometry": { "type": "Point", "coordinates": [ 7.9431, 47.288 ] } },
 { "type": "Feature", "properties": { "fid": 26492, "name": "Bern" }, "geometry": { "type": "Point", "coordinates": [ 7.4397, 46.9495 ] } },
 { "type": "Feature", "properties": { "fid": 26493, "name": "Thun" }, "geometry": { "type": "Point", "coordinates": [ 7.6296, 46.7549 ] } },
 { "type": "Feature", "properties": { "fid": 26494, "name": "Fribourg\/Freiburg" }, "geometry": { "type": "Point", "coordinates": [ 7.151, 46.8033 ] } },
