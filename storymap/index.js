@@ -9,7 +9,7 @@ import tracks from './tracks.json';
 mapboxgl.accessToken = 'pk.eyJ1Ijoic291cmNlcG9sZSIsImEiOiJjanB6bWxoazEwY2plNDhsY3RpenBvNmM0In0.Z--2Th6QmaLc_OhPDNsiwg';
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v9',
+    style: 'mapbox://styles/mapbox/light-v9',
     center: [8.228760,46.873336],
     zoom: 7,
     touchZoomRotate: false
@@ -25,7 +25,7 @@ map.on('load', function () {
         'type': 'circle',
         'source': 'places',
         'paint': {
-            'circle-color': 'black'
+            'circle-color': '#4e4b5c'
         }
     });
     map.addLayer({
@@ -37,6 +37,9 @@ map.on('load', function () {
             "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
             "text-offset": [0, 0.2],
             "text-anchor": "top"
+        },
+        "paint": {
+            "text-color": "#4e4b5c"
         }
     });
     map.addLayer({
@@ -47,7 +50,7 @@ map.on('load', function () {
             'data': tracks
         },
         "paint": {
-            "line-color": "green",
+            "line-color": "#c3859a",
             "line-width": 4
         }
     });
@@ -57,7 +60,7 @@ map.on('load', function () {
         "type": "line",
         "source": "track",
         "paint": {
-            "line-color": "green",
+            "line-color": "#c3859a",
             "line-width": 5
         }
     });
