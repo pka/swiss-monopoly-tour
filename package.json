@@ -14,7 +14,7 @@
   },
   "scripts": {
     "start": "parcel storymap/index.html",
-    "build": "parcel build storymap/index.html"
+    "build": "parcel build --public-url /monopoly storymap/index.html && mkdir -p dist/monopoly && mv dist/*.html dist/storymap.* dist/*.jpg dist/monopoly/"
   },
   "author": "Pirmin Kalberer",
   "license": "ISC"
